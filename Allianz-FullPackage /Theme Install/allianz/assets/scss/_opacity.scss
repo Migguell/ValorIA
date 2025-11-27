@@ -1,8 +1,0 @@
-$cms-opacity:(
-	10 : 0.1
-);
-@each $name, $value in $cms-opacity{
-	.cms-opacity-#{$name}{
-		@include opacity(#{$value});
-	}
-}
