@@ -1,0 +1,42 @@
+.cshlg-popup{    
+    &[style="display: block;"],
+    &[style="display: none;"]{
+        display: flex!important;
+    }
+    .boxclose{
+    	position: absolute;
+    	top: 0;
+    	right: 0;
+    	cursor: pointer;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+	    &:hover{
+	    	color: var(--cms-red);
+	    }
+	    [dir="rtl"] &{
+	    	right: auto;
+	    	left: 0;
+	    }
+    }
+    .register_form,
+    .lost_pwd_form{
+        display: none;
+    }
+    .alert_status{
+        background-color: yellow;
+        white-space: break-spaces;
+        text-overflow: unset;
+        &:not([style="display: block;"]){
+            display: none!important;
+        }
+    }
+    .login_dialog{
+        max-width: 400px;
+        position: relative;
+        form{
+            min-width: 270px;
+        }
+    }
+}

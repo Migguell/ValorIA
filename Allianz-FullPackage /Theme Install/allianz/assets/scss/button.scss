@@ -1,0 +1,398 @@
+/* CMS Button */
+$cms_theme_button_colors: $cms_theme_colors;
+$_cms_theme_button_colors:(
+    'accent',
+    'primary',
+    'secondary'
+);
+.btn,
+.button,
+button,
+input[type="submit"],
+input[type="button"] {
+    position: relative;
+    font-size: 15px;
+    font-family: var(--cms-body-family);
+    font-weight: 700;
+    padding: 0 40px;
+    min-height: 58px;
+    line-height: 58px;
+    @include transition(all 300ms linear 0ms);
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    justify-content: center;
+    // Icon
+    >[class*="cmsi-"]{
+        //font-size: 11px;
+    }
+    // Hover
+    &:hover,
+    &:focus {
+        outline: medium none;
+        text-decoration: none;
+    }
+    @media #{$max-smobile}{
+        height: 48px;
+        line-height: 48px;
+        padding: 0 20px;
+    }
+
+    &.justify-content-between{
+        justify-content: space-between;
+    }
+}
+button,
+.button,
+input[type="submit"],
+input[type="button"]{
+    color: #fff;
+    background-color: var(--cms-primary-regular);
+    &:hover{
+        color: #fff;
+        background-color: var(--cms-accent-regular);
+    }
+}
+.btn,
+.button,
+button{
+    &:after{
+        /* content: '';
+        border-bottom: 1px solid;
+        position: absolute;
+        left: 40px;
+        right: 40px;
+        margin-top: 18px;
+        transform-origin: left center;
+        -webkit-transform-origin: left center;
+        @include scale('0,1');
+        @include transition(transform 0.4s cubic-bezier(0.37, 0.31, 0.2, 0.85)); */
+    }
+    &:hover,
+    &:focus{
+        &:after{
+            //transform-origin: left center;
+            //-webkit-transform-origin: left center;
+            //@include scale('1,1');
+        }
+    }
+}
+// Button Outline
+.btn-outline,
+.elementor .btn-outline{
+    background-color: transparent;
+    @include box-shadow(0 0 0 1px var(--cms-primary-regular) inset);
+    &:hover,
+    &:focus{
+        @include box-shadow(0 0 0 1px var(--cms-accent-regular) inset);
+    }
+}
+.btn-outline-white,
+.elementor .btn-outline-white{
+    background-color: transparent;
+    @include box-shadow(0 0 0 1px $_white inset);
+    &:hover,
+    &:focus{
+        @include box-shadow(0 0 0 1px $_white inset);
+    }
+}
+.btn-outline-hover-white,
+.elementor .btn-outline-hover-white{
+    &:hover,
+    &:focus{
+        @include box-shadow(0 0 0 1px $_white inset);
+    }
+}
+// Button Color
+@each $name in $cms_theme_button_colors{
+    .btn-#{$name},
+    .btn-hover-#{$name}:hover{
+        background-color: #{var(--cms-#{$name})}!important;
+        @include box-shadow(0 0 0 1px #{'var(--cms-#{$name})'} inset !important);
+    }
+    .btn-outline-#{$name},
+    .elementor .btn-outline-#{$name}{
+        @include box-shadow(0 0 0 1px #{'var(--cms-#{$name})'} inset);
+    }
+    .btn-outline-hover-#{$name},
+    .elementor .btn-outline-hover-#{$name}{
+        &:hover,
+        &:focus{
+            @include box-shadow(0 0 0 1px #{'var(--cms-#{$name})'} inset);
+        }
+    }
+}
+@each $name in $_cms_theme_button_colors{
+    .btn-#{$name},
+    .btn-hover-#{$name}:hover{
+        background-color: #{'var(--cms-#{$name}-regular)'}!important;
+        @include box-shadow(0 0 0 1px #{'var(--cms-#{$name}-regular)'} inset !important);
+    }
+    .btn-outline-#{$name},
+    .elementor .btn-outline-#{$name}{
+        @include box-shadow(0 0 0 1px #{'var(--cms-#{$name}-regular)'} inset);
+    }
+    .btn-outline-hover-#{$name},
+    .elementor .btn-outline-hover-#{$name}{
+        &:hover,
+        &:focus{
+            @include box-shadow(0 0 0 1px #{'var(--cms-#{$name}-regular)'} inset);
+        }
+    }
+}
+.btn-white,
+.btn-hover-white:hover{
+    background-color: white!important;
+    @include box-shadow(0 0 0 1px $_white inset !important);
+}
+
+// Button Size
+.btn-xs{
+    min-height: 38px;
+    line-height: 38px;
+    padding: 0 20px;
+    &:after{
+        left: 20px;
+        right: 20px;
+    }
+}
+.btn-sm{
+    min-height: 42px;
+    line-height: 42px;
+    padding: 0 20px;
+    &:after{
+        left: 20px;
+        right: 20px;
+    }
+}
+.btn-smd{
+    min-height:48px;
+    line-height:48px;
+    padding: 0 20px;
+    &:after{
+        left: 20px;
+        right: 20px;
+    }
+}
+.btn-md{
+    min-height:52px;
+    line-height:52px;
+}
+.btn-lg{
+    min-height: 68px;
+    line-height: 68px;
+    padding: 0 40px;
+    @media #{$max-smobile}{
+        height: 58px;
+        min-height: 58px;
+        line-height: 58px;
+        padding: 0 30px;
+    }
+}
+.btn-xl{
+    min-height: 78px;
+    line-height: 78px;
+    padding: 0 40px;
+}
+.btn-xxl{
+    min-height: 88px;
+    line-height: 88px;
+    padding: 0 40px;
+}
+.btn-space-30{
+    padding: 0 30px;
+    &:after{
+        left: 30px;
+        right: 30px;
+    }
+}
+// Custom button
+.btn.cms-hover-underline-bg{
+    &:after{
+        display: none;
+    }
+    > span{
+        position: relative;
+        --cms-hover-underline-position-y: calc(100% - 2px);
+        --cms-hover-underline-height: 1px;
+        background-repeat: no-repeat;
+        background-image: linear-gradient(90deg,currentColor 0,currentColor 100%);
+        background-position: 0 var(--cms-hover-underline-position-y);
+        background-size: 0 var(--cms-hover-underline-height);
+        transition: background-size .5s cubic-bezier(.25,.46,.35,.94),color .2s ease-out,background-color .2s ease-out,border-color .2s ease-out;
+        line-height: 1.533;
+    }
+    &:hover > span{
+        background-size: 100% var(--cms-hover-underline-height);
+    }
+}
+
+// Video 
+.cms-video-play-stroke{
+    max-width: 100%;
+    max-height: 100%;
+    .cms-stroke-2{
+        stroke-dasharray: 940;
+        stroke-dashoffset: 940;
+        @include transition('stroke-dashoffset .6s cubic-bezier(.22,1,.36,1)');
+    }
+}
+.cms-btn-video{
+    //cursor: url("../images/pointer-play-video-white.png"), auto;
+    cursor: pointer;
+    display: flex;
+    align-items:center;
+    letter-spacing: 1px;
+    .cms-icon{
+        text-align: center;
+    }
+    .cms-btn--video{
+        z-index: 1;
+    }
+    // Stroke style
+    &.has-stroke{
+        &:hover{
+            .cms-stroke-2{
+                stroke-dashoffset: 0;
+            }
+        }
+    }
+    // Layout Style
+    &.layout-1{
+        &:not(.has-stroke) .cms-btn--video{
+            width: 110px;
+            height: 110px;
+            //border-radius: 50%;
+            //background-color: rgba($white, 0.4);
+            &:before{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 50%;
+                background-color: rgba($white, 0.4);
+                @include transition();
+            }
+            &:hover{
+                &:before{
+                    top: 10px;
+                    left: 10px;
+                    right: 10px;
+                    bottom: 10px;
+                }
+            }
+            // size
+            &.size-70{
+                width: 70px;
+                height: 70px;
+            }
+        }
+        &.has-stroke{
+            .cms-btn--video{
+                @media #{$max-smobile}{
+                    max-width: 162px;
+                    max-height: 162px;
+                }
+            }
+            .cms-text{
+                opacity: 0;
+                visibility: hidden;
+            }
+            &:hover{
+                .cms-play-icon{
+                    @include transform(scale(1.5));
+                    color: var(--cms-accent);
+                }
+                .cms-text {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+        .cms-stroke-1{
+            opacity: 0.45;
+        }
+    }
+}
+// Button Read more
+.cms-btn-readmore{
+    position: relative;
+    box-shadow: -10px 0px 0px 0px var(--cms-accent)!important;
+    line-height: 58px;
+    font-weight: 700;
+    font-size: 15px;
+    .cms-btn-icon{
+        display: block;
+        width: 58px;
+        height: 58px;
+        line-height: 58px;
+        background-color: $white;
+        text-align: center;
+        font-size: 12px;
+    }
+    .cms-btn-text{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $white;
+        visibility: hidden;
+        opacity: 0;
+        white-space: nowrap;
+        background-color: var(--cms-accent);
+        color: $white;
+        padding: 0 30px;
+        @include transform(translateX(100%));
+        display: flex;
+        gap: 10px;
+        flex-wrap: nowrap;
+        align-items:center;
+        [dir="rtl"] &{
+            left: auto;
+            right: 0;
+        }
+        &.end{
+            right: 0;
+            left: auto;
+            @include transform(translateX(-100%));
+            [dir="rtl"] &{
+                right: auto;
+                left: 0;
+            }
+        }
+    }
+    &:hover{
+        .cms-btn-text{
+            visibility: visible;
+            opacity: 1;
+            @include transform(translateX(0));
+        }
+    }
+}
+.hover-show-btn-readmore:hover{
+    .cms-btn-readmore{
+        .cms-btn-text{
+            visibility: visible;
+            opacity: 1;
+            @include transform(translateX(0));
+        }
+    }
+}
+// Circle Link wit icon
+.cms-link-circle{
+    width: 160px;
+    height: 160px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    position: relative;
+    > svg{
+        
+    }
+}

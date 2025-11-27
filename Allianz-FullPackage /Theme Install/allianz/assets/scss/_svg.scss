@@ -1,0 +1,12 @@
+.cms-svg-line{
+	.cms-svg--line{
+		stroke-dasharray: 940;
+	  stroke-dashoffset: 940;
+	  @include transition('stroke-dashoffset .6s cubic-bezier(.22,1,.36,1)');
+	} 
+}
+.elementor-element:hover{
+	.cms-svg--line{
+		stroke-dashoffset: 0;
+	}
+}

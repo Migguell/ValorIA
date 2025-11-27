@@ -1,0 +1,90 @@
+.header-layout-4{
+	@media (min-width: $mobile-menu-screen){
+		&.header-sticky-hidden:not(.header-mobile-open){
+			.site-navigation-dropdown{
+				transform: translate(0, var(--cms-header-height));
+			}
+		}
+		&.header-transparent{
+			&:not(.header-sticky-show){
+				.site-navigation-dropdown{
+					@include transition('all 0.5s ease-in-out');
+					position: absolute;
+					top: 0;
+					right: 0;
+					width: 220px;
+					border-radius: 0 0 0 8px;
+					background-color: rgba(#1b1a1a, 0.3);
+					padding: 40px 50px;
+					backdrop-filter: blur(10px) brightness(93%);
+					&:before,
+					&:after{
+						content: '';
+						position: absolute;
+						top: 0;
+						right: 0;
+						bottom: 0;
+						left: 0;
+						border-radius: inherit;
+					}
+					&:before{
+						opacity: 0.15;
+				    background-image: -moz-linear-gradient(-28deg, #161616 0%, rgba(22, 22, 22, 0) 100%);
+				    background-image: -webkit-linear-gradient(-28deg, #161616 0%, rgba(22, 22, 22, 0) 100%);
+				    background-image: -ms-linear-gradient(-28deg, #161616 0%, rgba(22, 22, 22, 0) 100%);
+					}
+					&:after{
+						opacity: 0.1;
+		    		background: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0) 100%);
+					}
+				}
+				.cms-primary-menu-dropdown{
+					position: relative;
+					z-index: 2;
+					>li{
+						height: auto;
+						margin: 0;
+						flex: 0 0 100%;
+						&:not(:last-child){
+							padding-bottom: 10px;
+						}
+						> a {
+		          color: var(--cms-menu-transparent-regular);
+		          &:after{
+		            //background-color: $transparent_menu_underline_color;
+		          }
+			      }
+			      &:hover > a{
+		          color: var(--cms-menu-transparent-hover);
+		          &:after{
+		            //background-color: $transparent_menu_underline_color_hover;
+		          }
+			      }
+			      &.current-menu-item > a,
+			      &.current-menu-ancestor > a {
+			        color: var(--cms-menu-transparent-active);
+			        &:after{
+			          //background-color: $transparent_menu_underline_color_active;
+			        }
+			      }
+			    }
+				}
+				.cms-menu-link{
+					position: relative;
+				}
+				.main-menu-toggle{
+					//display: none;
+				}
+				.site-tools{
+					padding-inline-end: 210px;
+				}
+			}
+			&.header-sticky-hidden{
+				.site-navigation-dropdown{
+					opacity: 0;
+					visibility: hidden;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,76 @@
+<pre> --------- Version 1.1.3 - 29 July, 2025 ---------
+^ update demo data
+</pre>
+<pre> --------- Version 1.1.2 - 24 July, 2025 ---------
+- Fix bugs
+^ Update Plugins
+</pre>
+<pre> --------- Version 1.1.1 - 19 Jul, 2025 ---------
+^ Tested up with WordPress 6.8.2
+^ Tested up with Elementor 3.30.2
+^ Tested up with WooCommerce 10.0.2
+^ Tested up with Contact Form 7 6.1
+^ Tested up with Newsletter 8.9.2
+^ Tested up with TranslatePress - Multilingual 2.9.20
+</pre>
+<pre> --------- Version 1.1.0 - 28 Apr, 2025 ---------
+^ Tested up with WordPress 6.8
+^ Tested up with Elementor 3.28
+^ Tested up with WooCommerce 9.8
+^ Tested up with Contact Form 7 6.0.6
+^ Tested up with Newsletter 8.7.9
+^ Tested up with TranslatePress - Multilingual 2.9.12
+</pre>
+<pre> --------- Version 1.0.9 - 24 Mar, 2025 ---------
+^ Tested up with WordPress 6.7.2
+^ Tested up with Elementor 3.28
+^ Tested up with WooCommerce 9.7
+^ Tested up with TranslatePress - Multilingual 2.9.8
+</pre>
+<pre> --------- Version 1.0.8.1 - 11 Feb, 2025 ---------
+- Fixed Slider Arrow
+^ Tested up with Elementor 3.27
+^ Tested up with WooCommerce 9.6
+</pre>
+<pre> --------- Version 1.0.8 - 02 Feb, 2025 ---------
+- Fixed CMS Portal require url
+</pre>
+<pre> --------- Version 1.0.7 - 24 Dec, 2024 ---------
+- Fixed Elementor Swiper CSS lib
+^ Tested up with Elementor 3.26
+^ Tested up with WooCommerce 9.5
+</pre>
+<pre> --------- Version 1.0.6.1 - 17 Sep, 2024 ---------
+- Fixed Grid Filter
+</pre>
+<pre> --------- Version 1.0.6 - 12 Sep, 2024 ---------
+^ Update plugin Elementor Theme Core version 1.6.3 to fix issue with waypoint.js (Elementor version 3.24.0 Removed waypoints.js library from the code)
+^ Tested up with WordPress 6.6
+^ Tested up with Elementor 3.24
+^ Tested up with WooCommerce 9.3
+</pre>
+<pre> --------- Version 1.0.5 - 04 Sep, 2024 ---------
+^ Update Demo Site
+^ Tested up with WooCommerce 9.2
+</pre>
+<pre> --------- Version 1.0.4 - 09 Aug, 2024 ---------
+^ Tested up with WordPress 6.6.1
+^ Tested up with Elementor 3.23.4
+^ Tested up with WooCommerce 9.1.4
+- Fixed shape rotation for Service list
+</pre>
+<pre> --------- Version 1.0.3 - 12 Jun, 2024 ---------
+^ Tested up with WordPress 6.5.4
+^ Tested up with Elementor 3.21.8
+^ Tested up with WooCommerce 8.9.3
+</pre>
+<pre> --------- Version 1.0.2 - 21 May, 2024 ---------
+- fix option color for CTA Lists
+- change gradient shadow from image to css3 for pricing, widgets, element
+</pre>
+<pre> --------- Version 1.0.1 - 15 March, 2024 ---------
+^ Update Demo data
+</pre>
+<pre> --------- Version 1.0.0 - 01 March, 2024 ---------
+- Initial release
+</pre>

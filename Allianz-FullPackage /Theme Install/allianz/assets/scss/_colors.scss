@@ -1,0 +1,66 @@
+$background-color: (
+	'accent',
+	'primary',
+	'secondary'
+);
+@each $color in $background-color{
+	.bg-#{$color},
+	.bg-hover-#{$color}.active,
+	.bg-hover-#{$color}:hover{
+		background-color: #{'var(--cms-#{$color}-regular)'};
+	}
+	.text-#{$color},
+	.text-hover-#{$color}:hover{
+		color: #{'var(--cms-#{$color}-regular)'};
+	}
+	// SVG
+	.stroke-#{$color}{
+		stroke: #{'var(--cms-#{$color}-regular)'};
+	}
+}
+.stroke-border{
+	stroke: $border_color;
+}
+// Theme Color
+@each $color in $cms_theme_colors{
+	.bg-#{$color},
+	.bg-hover-#{$color}.active,
+	.bg-hover-#{$color}:hover{
+		background-color: #{'var(--cms-#{$color})'};
+	}
+	// SVG
+	.stroke-#{$color}{
+		stroke: #{'var(--cms-#{$color})'};
+	}
+}
+// Background RGBA
+$background-color-accent-rgba:(
+	'09' : '0.9'
+);
+@each $name, $opacity in $background-color-accent-rgba{
+	.bg-accent-#{$name}{
+		background-color: rgba($accent_color_regular, #{$opacity});
+	}
+}
+// Custom Color
+.bg-white-04{
+	background-color: rgba($white, 0.4);
+}
+.bg-white-09{
+	background-color: rgba($white, 0.9);
+}
+.bg-primary-04{
+	background-color: rgba($primary_color_regular, 0.4);
+}
+.bg-custom{
+	background-color: var(--cms-bg-custom);
+}
+.bg-black-03{
+	background-color: rgba(#1b1a1a, 0.3);
+}
+// On Hover
+[class*="bg-on-hover"]:hover{
+	.bg-on-hover-primary{
+		background-color: var(--cms-primary);
+	}
+}

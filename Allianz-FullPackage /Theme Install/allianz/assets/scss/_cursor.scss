@@ -1,0 +1,117 @@
+.cms-theme-cursor{
+    //cursor: none;
+}
+// Mouse Cursor
+.cms-galleries-light-box{
+    cursor: zoom-in;
+}
+.cursor-mouse-black{
+    cursor: url('../images/pointer-mouse-black.png'), auto;
+}
+.cursor-mouse-white{
+    cursor: url('../images/pointer-mouse-white.png'), auto;
+}
+.cursor-close-black{
+    cursor: url('../images/pointer-close-black.png'), auto;
+}
+.cursor-close-white,
+#woosw_wishlist{
+    cursor: url('../images/pointer-close-white.png'), auto;
+}
+.cursor-play-video{
+    cursor: url('../images/pointer-play-video-white.png'), auto;
+    &.black{
+        cursor: url('../images/pointer-play-video-black.png'), auto;
+    }
+}
+.cursor-popup{
+    cursor: url('../images/cursor-popup.png'), auto;
+    &-white{
+        cursor: url('../images/cursor-popup-white.png'), auto;
+    }
+    &-black{
+        cursor: url('../images/cursor-popup.png'), auto;
+    }
+}
+.drag-cursor{
+    cursor: none;
+}
+
+#cms-theme-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999999;
+    visibility: hidden;
+    &.cms-visible{
+        visibility: visible;
+    }
+    // Not hover
+    &:not(.cms-hovering){
+        &.cms-drag{
+            cursor: none;
+            width: 106px;
+            height: 106px;
+            background: url('../images/cursor-drag.png') center center no-repeat;
+        }
+    }
+}
+
+.cms-link-hover-move {
+    width: 165px;
+    height: 165px!important;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/*.cms-link-hover-move .cms-link-hover-move-holder {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid;
+    border-radius: 50%;
+}
+.cms-theme-cursor {
+    cursor: none!important;
+} */
+
+/* #cms-theme-cursor svg {
+    overflow: visible;
+}
+#cms-theme-cursor circle {
+    fill: currentColor;
+    stroke: transparent;
+    vector-effect: non-scaling-stroke;
+    overflow: visible;
+    stroke-width: 1;
+    filter: blur(7px);
+    -webkit-filter: blur(7px);
+}
+.cms-cursor-dot {
+    color: #efff5d!important;
+}
+
+#cms-theme-cursor.cms-hovering circle {
+    fill: transparent;
+    stroke: currentColor;
+    filter: none;
+    -webkit-filter: none;
+}
+#cms-theme-cursor circle {
+    fill: currentColor;
+    stroke: transparent;
+    vector-effect: non-scaling-stroke;
+    overflow: visible;
+    stroke-width: 1;
+    filter: blur(7px);
+    -webkit-filter: blur(7px);
+}
+.cms-moving{
+	will-change: transform;
+	cursor: none;
+} */

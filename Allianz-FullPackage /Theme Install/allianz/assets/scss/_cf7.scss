@@ -1,0 +1,198 @@
+.wpcf7-not-valid-tip{
+	font-size: 14px;
+	font-style: italic;
+}
+form.wpcf7-form{
+	&[data-status="submitting"]{
+		.wpcf7-form-control.wpcf7-submit{
+			position: relative;
+			cursor: none;
+			pointer-events: none;
+			&:before{
+				content: "\e95b";
+				font-family: 'cmsi';
+				animation: loading-spinner 1s infinite linear;
+				position: absolute;
+				left: calc(50% - 15px);
+				top: calc(50% - 15px);
+				font-size: 30px;
+				line-height: 30px;
+			}
+		}
+	}
+	label{
+		cursor: pointer;
+		font-weight: 600;
+	}
+}
+.wpcf7-list-item{
+	margin-left: 0!important;
+	margin-right: 0!important;
+	cursor: pointer;
+}
+.wpcf7-radio,
+.wpcf7-checkbox{
+	display: flex;
+	flex-wrap: wrap;
+	&:not([class*="gap-"]){
+		gap:20px;
+	}
+	.wpcf7-list-item{
+		flex: 0 0 auto;
+		> label{
+			font-size: 15px;
+			display: flex;
+			gap: 15px;
+			font-weight: normal;
+			color: $placeholder_color;
+			position: relative;
+			> input[type="radio"],
+			> input[type="checkbox"]{
+				opacity: 0;
+			}
+			&:before,
+			&:after{
+				content: '';
+				position: absolute;
+				@include transition();
+			}
+			&:before{
+				top: 2px;
+				width: 17px;
+				height: 17px;
+				border: 2px solid $form_field_border_color;
+			}
+			&:after{
+				opacity: 0;
+				visibility: hidden;
+			}
+		}
+		&.active{
+			> label{
+				&:before{
+					border-color:var(--cms-primary);
+				}
+				&:after{
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+	}
+}
+// Radio
+.wpcf7-radio{
+	.wpcf7-list-item{
+		> label {
+			&:before,
+			&:after{
+				border-radius: 50%;
+			}
+			&:after{
+				width: 7px;
+				height: 7px;
+				top: 7px;
+				left: 5px;
+				background-color: var(--cms-primary);
+			}
+		}
+	}
+}
+// Checkbox
+.wpcf7-checkbox{
+	.wpcf7-list-item{
+		input[type="checkbox"]{
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+		}
+		> label {
+			padding-inline-start: 30px;
+			&:before{
+				left: 0;
+				[dir="rtl"] &{
+					left: auto;
+					right: 0;
+				}
+			}
+			&:after{
+				content: "\e915";
+				font-family: 'cmsi' !important;
+				font-size: 10px;
+				position: absolute;
+				top: 4px;
+				left: 4px;
+				color: var(--cms-accent-regular);
+			}
+		}
+		&.active{
+			> label:before{
+				border-color: var(--cms-accent-regular);
+			}
+		}
+	}
+}
+// data time
+.wpcf7-form-control-wrap.cms-date-time{
+	position: relative;
+	.cms-time-placeholder{
+		position: absolute;
+		top: 50%;
+		@include transform(translateY(-50%));
+		z-index: 1;
+		+ .wpcf7-form-control{
+			//opacity: 1;
+			//visibility: visible;
+			margin: 0 -20px;
+		    width: calc(100% + 40px)!important;
+		    max-width: calc(100% + 40px)!important;
+		}
+	}
+	//
+	&.active{
+		.cms-time-placeholder{
+			z-index: -1;
+			opacity: 0;
+			visibility: hidden;
+			+ .wpcf7-form-control{
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+}
+
+// Default Form 
+.wpcf7-form label{
+	> .wpcf7-form-control-wrap{
+		flex: 0 0 100%;
+		width: 100%;
+	}
+	&:not(:first-child){
+		margin-top: 20px;
+	}
+	+ button{
+		margin-top: 30px;
+	}
+}
+// Message 
+.wpcf7 form .wpcf7-response-output{
+	margin: 2em 0 0;
+  padding: 10px 15px;
+  border: 2px solid #00a0d2;
+  background-color: #00a0d2;
+  border-radius: 4px;
+  color: var(--cms-primary);
+}
+.wpcf7 form.invalid, 
+.wpcf7 form.unaccepted, 
+.wpcf7 form.payment-required {
+	.wpcf7-response-output{
+		background-color: #ffb900;
+	}
+}

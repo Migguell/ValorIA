@@ -1,0 +1,202 @@
+/**
+ * Blog/ Archive Page
+*/
+.cms-blog {
+	margin-bottom: 70px;
+	+ .posts-pagination{
+		margin-top: -20px;
+	}
+	.cms-readmore{
+		margin-top: 23px;
+	}
+}
+/**
+ * Post Thumbnail
+*/
+.cms-post-thumbnail{
+	
+}
+.cms-post--content{
+}
+/**
+ * Post Meta
+*/
+.cms-post-meta{
+	color: var(--cms-meta-color);
+	.separator{
+		width: 1px;
+		height: 9px;
+		background-color: var(--cms-meta-color);
+	}
+}
+.cms-post-meta-2{
+	.cms--term{
+		background-color: rgba($white, 0.7);
+		border-radius: 4px;
+		padding: 4px 10px 0;
+		> a{
+			margin-bottom: -1px;
+		}
+	}
+}
+/**
+* Post readmore
+*/
+.cms-readmore{
+	display: flex;
+	gap: 10px;
+}
+/**
+ * Job Details
+*/
+.cms-job-details{
+	font-size: 13px;
+	line-height: 25px;
+	color: var(--cms-primary);
+	.job-type{
+		background-color: var(--cms-accent-regular);
+		color: #fff;
+		padding: 0 10px;
+		border-radius: 4px;
+	}
+}
+/**
+* Post page link
+*/
+.page-numbers,
+.post-page-numbers{
+	display: inline-block;
+	color: var(--cms-primary);
+	font-size: 20px;
+	font-weight: 700;
+	text-align: center;
+	&.next,
+	&.prev{
+		font-size: 15px;
+		display: flex;
+		gap: 10px;
+		> i{
+			display: inline-block;
+			@include transform(translateY(4px));
+		}
+		&:hover{
+			color: var(--cms-accent);
+		}
+	}
+	&.next{
+		margin-inline-start: 30px;
+	}
+	&.prev{
+		margin-inline-end: 30px;
+	}
+	// make circle
+	&:not(.next):not(.prev){
+		min-width: 58px;
+		height: 58px;
+		line-height: 58px;
+		box-shadow: 0 0 0 1px var(--cms-primary) inset;
+		@include border-radius(50%);
+		&:hover,
+		&:focus,
+		&.current{
+			background-color: var(--cms-accent);
+			box-shadow: 0 0 0 1px var(--cms-accent) inset;
+			color: $white;
+		}
+	}
+}
+
+.woocommerce-pagination,
+.posts-page-links,
+.cms-page-links{
+	gap: 10px;
+}
+.woocommerce-pagination,
+.posts-page-links{
+	justify-content: center;
+}
+.cms-load-more{
+	margin-top: 40px;
+	&.no-more{
+		display: none;
+	}
+}
+/**
+ * Single 
+ *
+*/
+.cms-post-single-title{
+}
+.tags-share{
+	border-top: 2px solid $border-color;
+	margin-top: 33px;
+	padding-top: 40px;
+	.label{
+		padding-bottom: 10px;
+	}
+}
+.cms-post-share{
+	i{
+		font-size: 20px;
+		@include transition();
+		display: inline-block;
+	}
+	a{
+		&:hover{
+			i{
+				@include scale(1.5);
+			}
+		}
+	}
+}
+.cms-nav-links{
+	margin-top: 35px;
+	font-size: 15px;
+	font-weight: 700;
+	[class*="icon-"]{
+		font-size: 13px;
+	}
+	a{
+		border-bottom: 1px solid;
+	}
+}
+.cms-author-info{
+	margin-top: 40px;
+	padding: 50px;
+	position: relative;
+	background-color: $white;
+	box-shadow: 0 0 0 10px #f9f9f9;
+	.user-social{
+		margin-top: 13px;
+		font-size: 20px;
+		a:hover{
+			@include scale(1.5);
+		}
+	}
+	@media #{$max-mobile}{
+		padding-left: 20px;
+		padding-right: 20px;
+		justify-content: center;
+		.user-social{
+			justify-content: center;
+		}
+	}
+}
+.cms-social-share{
+	a{
+		display: block;
+		width: 32px;
+		height: 32px;
+		line-height: 28px;
+		text-align: center;
+		font-size: 20px;
+		border: 2px solid var(--cms-border-color);
+		color: var(--cms-accent-regular);
+		@include border-radius(50%);
+		&:hover{
+			border-color: var(--cms-accent-regular);
+			color: var(--cms-accent-regular);
+			@include scale(1.1);
+		}
+	}
+}

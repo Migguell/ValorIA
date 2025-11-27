@@ -1,0 +1,98 @@
+.cms-footer{
+	// Default Footer
+	&:not(.cms-footer-elementor){
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+}
+.scroll-top {
+	position: fixed;
+	z-index: 99;
+	bottom: 24px;
+	right: 40px;
+	height: 58px;
+	width: 58px;
+	line-height: 58px;
+	text-align: center;
+	background-color: var(--cms-secondary-regular);
+	@include border-radius(4px);
+	color: #fff;
+	font-size: 22px;
+	opacity: 0;
+	visibility: hidden;
+	&:hover, &:focus, &:active {
+		color: #fff;
+		background-color: var(--cms-accent-regular);
+	}
+	&.to-top-show {
+		bottom: 60px;
+		opacity: 1;
+		visibility: visible;
+		@media #{$max-mobile} {
+			bottom: 0;
+			right: 0;
+			@include border-radius(4px 0 0);
+			height: 30px;
+			width: 30px;
+			line-height: 30px;
+			font-size: 16px;
+			[dir="rtl"] &{
+				right: auto;
+				left: 0;
+			}
+		}
+	}
+	[dir="rtl"] &{
+		right: auto;
+		left: 40px;
+	}
+}
+
+#cms-subscribe-popup{
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10;
+    background-color: rgba(#1b1a1a,0.7);
+    .cms-fadeInRight,
+    .cms-fadeInLeft,
+    .cms-fadeInUp{
+    	opacity: 0;
+    	visibility: hidden;
+    	transition: transform .52s cubic-bezier(.35,.18,.07,1.04), opacity .52s cubic-bezier(.35,.18,.07,1.04),visibility .52s cubic-bezier(.35,.18,.07,1.04);
+    }
+    .cms-fadeInLeft{
+    	@include transform(translateX(-100%));
+    }
+    .cms-fadeInRight{
+    	@include transform(translateX(100%));
+    }
+    .cms-fadeInUp{
+    	@include transform(translateY(100%));
+    }
+}
+.cms-sp-inner{
+    min-width: calc( 100vw - 40px);
+    @media #{$min-mobile-extra} {
+    	min-width: 620px;
+    	max-width: var(--cms-popup-max-width, 620px);
+    }
+}
+.cms-sp-opened #cms-subscribe-popup{
+	opacity: 1;
+    visibility: visible;
+    .cms-fadeInRight,
+    .cms-fadeInLeft,
+    .cms-fadeInUp{
+    	opacity: 1;
+    	visibility: visible;
+    }
+    .cms-fadeInLeft{
+    	@include transform(translateX(0));
+    }
+    .cms-fadeInRight{
+    	@include transform(translateX(0));
+    }
+    .cms-fadeInUp{
+    	@include transform(translateY(0));
+    }
+}

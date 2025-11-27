@@ -1,0 +1,258 @@
+$outer_spacing_top:(
+	8, 10, 15, 20, 25, 30, 35, 40,
+	45, 50, 70, 80, 130, 150
+);
+$outer_spacing_bot:(
+	10, 15, 20, 25, 30, 35, 40,
+	50, 60, 70, 100, 110
+);
+$outer_spacing_l:(
+	10, 20, 30, 40,
+	50
+);
+$outer_spacing_r:(
+	10, 20, 30, 40,
+	50, 80
+);
+$outer_spacing_tb:(
+	10, 20, 30, 40,
+);
+$outer_spacing_lr:(
+	10, 20, 30, 40,
+);
+// All 
+@each $space in $outer_spacing_top{
+	.mt-#{$space}{
+		margin-top: #{$space}px;
+	}
+}
+@each $space in $outer_spacing_bot{
+	.mb-#{$space}{
+		margin-bottom: #{$space}px;
+	}
+}
+@each $space in $outer_spacing_l{
+	.ml-#{$space}{
+		margin-inline-start: #{$space}px;
+	}
+}
+@each $space in $outer_spacing_r{
+	.mr-#{$space}{
+		margin-inline-end: #{$space}px;
+	}
+}
+@each $space in $outer_spacing_tb{
+	.m-tb-#{$space}{
+		margin-top: #{$space}px;
+		margin-bottom: #{$space}px;
+	}
+}
+@each $space in $outer_spacing_lr{
+	.m-lr-#{$space}{
+		margin-inline-start: #{$space}px;
+		margin-inline-end: #{$space}px;
+	}
+}
+// Laptop
+$outer_spacing_laptop_tb:();
+$outer_spacing_laptop_top:();
+$outer_spacing_laptop_left:();
+$outer_spacing_laptop_right:(0);
+@media #{$max-laptop}{
+	@each $space in $outer_spacing_laptop_tb{
+		.m-tb-laptop-#{$space}{
+			margin-top: #{$space}px;
+			margin-bottom: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_laptop_top{
+		.mt-laptop-#{$space}{
+			margin-top: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_laptop_left{
+		.ml-laptop-#{$space}{
+			margin-inline-start: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_laptop_right{
+		.mr-laptop-#{$space}{
+			margin-inline-end: #{$space}px;
+		}
+	}
+}
+// Tablet Extra
+$outer_spacing_tablet_extra_tb:();
+$outer_spacing_tablet_extra_top:(40);
+$outer_spacing_tablet_extra_left:(
+	0, 40
+);
+$outer_spacing_tablet_extra_right:();
+@media #{$max-tablet-extra}{
+	@each $space in $outer_spacing_tablet_extra_tb{
+		.m-tb-tablet-extra-#{$space}{
+			margin-top: #{$space}px;
+			margin-bottom: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_tablet_extra_top{
+		.mt-tablet-extra-#{$space}{
+			margin-top: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_tablet_extra_left{
+		.ml-tablet-extra-#{$space}{
+			margin-inline-start: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_tablet_extra_right{
+		.mr-tablet-extra-#{$space}{
+			margin-inline-end: #{$space}px;
+		}
+	}
+}
+// Tablet
+$outer_spacing_tablet_tb:();
+$outer_spacing_tablet_top:(20);
+$outer_spacing_tablet_bot:(30);
+$outer_spacing_tablet_left:();
+$outer_spacing_tablet_right:(30);
+@media #{$max-tablet}{
+	@each $space in $outer_spacing_tablet_tb{
+		.m-tb-tablet-#{$space}{
+			margin-top: #{$space}px;
+			margin-bottom: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_tablet_top{
+		.mt-tablet-#{$space}{
+			margin-top: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_tablet_bot{
+		.mb-tablet-#{$space}{
+			margin-bottom: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_tablet_left{
+		.ml-tablet-#{$space}{
+			margin-inline-start: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_tablet_right{
+		.mr-tablet-#{$space}{
+			margin-inline-end: #{$space}px;
+		}
+	}
+}
+// Mobile Extra
+$outer_spacing_mobile_extra_tb:();
+$outer_spacing_mobile_extra_top:(0);
+$outer_spacing_mobile_extra_bot:(20);
+$outer_spacing_mobile_extra_left:(0);
+$outer_spacing_mobile_extra_right:();
+@media #{$max-mobile-extra}{
+	@each $space in $outer_spacing_mobile_extra_tb{
+		.m-tb-mobile-extra-#{$space}{
+			margin-top: #{$space}px;
+			margin-bottom: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_mobile_extra_top{
+		.mt-mobile-extra-#{$space}{
+			margin-top: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_mobile_extra_bot{
+		.mb-mobile-extra-#{$space}{
+			margin-bottom: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_mobile_extra_left{
+		.ml-mobile-extra-#{$space}{
+			margin-inline-start: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_mobile_extra_right{
+		.mr-mobile-extra-#{$space}{
+			margin-inline-end: #{$space}px;
+		}
+	}
+}
+// Mobile
+$outer_spacing_mobile_tb:();
+$outer_spacing_mobile_top:();
+$outer_spacing_mobile_bot:();
+$outer_spacing_mobile_left:(20);
+$outer_spacing_mobile_right:();
+@media #{$max-mobile}{
+	@each $space in $outer_spacing_mobile_tb{
+		.m-tb-mobile-#{$space}{
+			margin-top: #{$space}px;
+			margin-bottom: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_mobile_top{
+		.mt-mobile-#{$space}{
+			margin-top: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_mobile_bot{
+		.mb-mobile-#{$space}{
+			margin-bottom: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_mobile_left{
+		.ml-mobile-#{$space}{
+			margin-inline-start: #{$space}px;
+		}
+	}
+	@each $space in $outer_spacing_mobile_right{
+		.mr-mobile-#{$space}{
+			margin-inline-end: #{$space}px;
+		}
+	}
+}
+// Small Mobile
+$outer_smobile_spacing_top:();
+$outer_smobile_spacing_left:();
+$outer_smobile_spacing_right:();
+$outer_smobile_spacing_bottom:();
+@media #{$max-smobile}{
+	@each $space in $outer_smobile_spacing_top{
+		.mt-smobile-#{$space}{
+			margin-top: #{$space}px;
+		}
+	}
+	@each $space in $outer_smobile_spacing_left{
+		.ml-smobile-#{$space}{
+			margin-inline-start: #{$space}px;
+		}
+	}
+	@each $space in $outer_smobile_spacing_right{
+		.mr-smobile-#{$space}{
+			margin-inline-end: #{$space}px;
+		}
+	}
+	@each $space in $outer_smobile_spacing_bottom{
+		.mb-smobile-#{$space}{
+			margin-bottom: #{$space}px;
+		}
+	}
+}
+// Custom 
+.ml-auto{
+	margin-inline-start: auto;
+}
+.m-lr-auto{
+	margin-left: auto;
+	margin-right: auto;
+}
+.ml-container{
+	@media (min-width: 576px){
+		margin-inline-start: 20px;
+	}
+	@media (min-width: 1300px){
+		margin-inline-start: calc(calc(100vw - 1280px)/2);
+	}
+}
