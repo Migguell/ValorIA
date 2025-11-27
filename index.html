@@ -2465,19 +2465,19 @@
             <!-- STATS ROW -->
             <div class="stats-row">
                 <div class="stat-item">
-                    <div class="stat-header"><span class="stat-number">6,154</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
+                    <div class="stat-header"><span class="stat-number" data-from="1200" data-to="6154" data-decimals="0">1,200</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
                     <p class="stat-desc">Released projects and strategies planned by company in 2024.</p>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-header"><span class="stat-number">0,512</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
+                    <div class="stat-header"><span class="stat-number" data-from="0.2" data-to="0.512" data-decimals="3">0,200</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
                     <p class="stat-desc">Qualified and dedicated team of financial experts to help you.</p>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-header"><span class="stat-number">1,784</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
+                    <div class="stat-header"><span class="stat-number" data-from="100" data-to="1784" data-decimals="0">100</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
                     <p class="stat-desc">Satisfied and happy clients we have servedall over the world.</p>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-header"><span class="stat-number">0,29</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
+                    <div class="stat-header"><span class="stat-number" data-from="0.01" data-to="0.29" data-decimals="2">0,01</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
                     <p class="stat-desc">Years of proven financial expertise in wealth management planning.</p>
                 </div>
             </div>
@@ -3087,6 +3087,71 @@
                     header.classList.remove('visible');
                 }
             }
+        });
+    </script>
+
+    <!-- JavaScript para Animação de Contadores -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('.stat-number[data-from]');
+            const animationDuration = 2500; // 2.5 segundos para cada animação
+            const observerThreshold = 0.5; // Ativar quando 50% do elemento estiver visível
+
+            // Função para formatar número com vírgula decimal
+            function formatNumber(num, decimals) {
+                // Converte para string e substitui ponto por vírgula
+                const formatted = num.toFixed(decimals).replace('.', ',');
+                return formatted;
+            }
+
+            // Função para animar um contador
+            function animateCounter(counter) {
+                const from = parseFloat(counter.dataset.from);
+                const to = parseFloat(counter.dataset.to);
+                const decimals = parseInt(counter.dataset.decimals) || 0;
+                const startTime = performance.now();
+
+                function updateCounter(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / animationDuration, 1);
+
+                    // Função easeOutCubic para animação suave
+                    const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+                    const currentValue = from + (to - from) * easeOutCubic;
+
+                    counter.textContent = formatNumber(currentValue, decimals);
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        // Garante que o valor final seja exato
+                        counter.textContent = formatNumber(to, decimals);
+                    }
+                }
+
+                requestAnimationFrame(updateCounter);
+            }
+
+            // Configurar Intersection Observer
+            const observerOptions = {
+                threshold: observerThreshold,
+                rootMargin: '0px 0px -50px 0px' // Ativa um pouco antes do elemento entrar completamente
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.dataset.animated) {
+                        // Marca como animado para não repetir
+                        entry.target.dataset.animated = 'true';
+                        animateCounter(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observar todos os contadores
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
         });
     </script>
 
