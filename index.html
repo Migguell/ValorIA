@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulting Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/index.css">
+    <link rel="stylesheet" href="/src/styles/index.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+        }
+
+        /* --- GRADIENTES SVG --- */
+        .svg-defs {
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+
+        /* --- HEADER SECTION --- */
+        .main-header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background-color: transparent;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        /* Linha delimitadora sempre visível na parte inferior */
+        .main-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        /* Mostrar linha quando header está escondido */
+        .main-header.hidden::after {
+            opacity: 1;
+        }
+
+        /* Estados do Header */
+        .main-header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .main-header.visible {
+            background-color: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Esconder linha delimitadora quando header está visível com fundo branco */
+        .main-header.visible::after {
+            opacity: 0;
+        }
+
+        .header-container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon-diamond {
+            width: 32px;
+            height: 32px;
+            background-color: #dd6b42;
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+
+        .logo-text {
+            color: #1a1a1a;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-left: 5px;
+            transition: color 0.3s ease;
+        }
+
+        /* Ajuste de cor para header transparente (hero section) */
+        .main-header:not(.visible) .logo-text {
+            color: #ffffff;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            margin-left: auto;
+            margin-right: 50px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding-bottom: 5px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        /* Ajuste de cor para links no header transparente */
+        .main-header:not(.visible) .nav-link {
+            color: #ffffff;
+        }
+
+        .nav-link.active {
+            border-bottom-color: #dd6b42;
+        }
+
+        /* Estilo atualizado para a seta chevron */
+        .nav-arrow-chevron {
+            width: 14px;
+            height: 14px;
+            margin-top: 2px;
+            color: #1a1a1a;
+            stroke: #1a1a1a;
+            stroke-width: 2.5;
+            transition: all 0.3s ease;
+        }
+
+        /* Ajuste de cor para chevron no header transparente */
+        .main-header:not(.visible) .nav-arrow-chevron {
+            color: #ffffff;
+            stroke: #ffffff;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-get-touch {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 11px 24px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 2px;
+            white-space: nowrap;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+        }
+
+        .btn-get-touch:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #333;
+        }
+
+        .arrow-diagonal {
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .icon-search, .icon-menu {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+        }
+
+        .icon-search:hover, .icon-menu:hover {
+            opacity: 0.6;
+        }
+
+        .icon-search svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+        }
+        
+        .icon-search svg path {
+            stroke: #1a1a1a;
+            fill: none;
+            stroke-width: 2;
+            transition: stroke 0.3s ease;
+        }
+
+        .icon-menu svg {
+            width: 30px;
+            height: 30px;
+            stroke: #1a1a1a;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            transition: stroke 0.3s ease;
+        }
+
+        /* Ajuste de cor para ícones no header transparente */
+        .main-header:not(.visible) .icon-search svg path,
+        .main-header:not(.visible) .icon-menu svg {
+            stroke: #ffffff;
+        }
+
+        @media (max-width: 1150px) {
+            .main-nav {
+                display: none;
+            }
+        }
+
+        /* Container global utilizado por várias seções */
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            z-index: 3;
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        @media (max-width: 900px) {
+            .content-flex-wrapper, .stats-row, .strategy-header-row, .service-row, .future-flex-wrapper {
+                flex-direction: column;
+            }
+            .left-col, .right-col, .service-text-col, .service-img-col, .future-left, .future-right {
+                width: 100%;
+            }
+            .left-col { margin-bottom: 40px; position: static; }
+            .service-img-col { margin-top: 40px; }
+            .percent-badge-box { left: 20px; } /* Ajuste mobile */
+            .strategy-graphic { margin-top: 30px; }
+            .stat-item {
+                flex: 1 1 45%;
+                border-right: none;
+                padding-left: 0 !important;
+                padding-right: 20px;
+                margin-bottom: 30px;
+            }
+            .future-left { margin-bottom: 40px; }
+            /* Logos no mobile */
+            .logo-item {
+                flex: 0 0 calc(50% - 20px); /* Duas colunas */
+                max-width: none;
+            }
+
+          }
+        @media (max-width: 600px) {
+            .logo-item {
+                flex: 0 0 calc(100% - 20px); /* Uma coluna */
+            }
+        }
+
+    
+      
+        
+        
+  
+        
+        @media (max-width: 900px) {
+                  }
+
+        
+            </style>
+</head>
+<body>
+
+    <!-- SVG Defs -->
+    <svg class="svg-defs">
+        <defs>
+            <linearGradient id="metal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#d0d0d0;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#b0b0b0;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- HEADER SECTION -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="logo-icon-diamond"></div>
+            </div>
+            <nav class="main-nav">
+                <!-- Itens de navegação atualizados com setas Chevron -->
+                <a href="#" class="nav-link active">
+                    Home 
+                    <svg class="nav-arrow-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </a>
+                <a href="#" class="nav-link">
+                    Company 
+                    <svg class="nav-arrow-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </a>
+                <a href="#" class="nav-link">
+                    Services 
+                    <svg class="nav-arrow-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </a>
+                <a href="#" class="nav-link">
+                    Case Studies 
+                    <svg class="nav-arrow-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </a>
+                <a href="#" class="nav-link">
+                    News 
+                    <svg class="nav-arrow-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </a>
+                <a href="#" class="nav-link">
+                    Shop 
+                    <svg class="nav-arrow-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </a>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn-get-touch">Get In Touch <span class="arrow-diagonal">&#8599;</span></a>
+                <div class="icon-search">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <div class="icon-menu">
+                    <svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="5" x2="21" y2="5"></line><line x1="3" y1="19" x2="21" y2="19"></line></svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-bg-placeholder">IMAGEM</div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-text-content">
+                <p class="top-tagline">Take control of your financial future and start growing your wealth</p>
+                <h1 class="hero-title">Grow Your Wealth <br> With Our Leading <br> Edge Solutions!</h1>
+                <a href="#" class="cta-circle"><svg viewBox="0 0 24 24"><path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z" transform="rotate(-45, 12, 12)"/></svg></a>
+            </div>
+            <div class="bottom-card">
+                <h3 class="card-title">Grow Your Wealth</h3>
+                <div class="divider"></div>
+                <p class="card-desc">We help our clients achieve their goals by providing expert consulting services.</p>
+                <div class="nav-arrows"><span class="nav-arrow">&#8592;</span><span class="nav-arrow">&#8594;</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT SECTION (BRANCA) -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-flex-wrapper">
+                <div class="left-col">
+                    <span class="section-tagline">Putting the right solutions and methods in place.</span>
+                    <h2 class="section-heading">A global consulting firm experienced in identifying, assessing, and solving all business challenges!</h2>
+                    <svg class="big-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                </div>
+                <div class="right-col">
+                    <p class="intro-bold">We are a consulting firm with over 20 years of experience in all industries, supporting their financial growth. We also offer expert guidance, unlocking your potential for growth and profitability that helps proof our business investment and ensuring success in our mission as business advisors!</p>
+                    <p class="text-light">Our specialist team of consultants understands the importance of maintaining a long lasting business relationships with clients to deliver specific investment solutions for a long term success and empower them</p>
+                    <div class="image-block-wrapper">
+                        <div class="content-img-placeholder">IMAGEM</div>
+                        <div class="video-badge"><span class="play-icon-small">&#9658;</span> Watch <br> video</div>
+                        <div class="caption-badge">Consulting services tailored for your financial needs!</div>
+                    </div>
+                    <div class="bottom-details-row">
+                        <div class="details-text-col">
+                            <p class="details-text">Financial success depends on relying on a team of experts with in-depth knowledge and massive experience in business application solutions to guide you through the process and provides the necessary tools to reach the desired goal and exceed your expectations.</p>
+                            <p class="details-text">Find out about the ways to deal with debts if you are falling behind with daily bills, loan and repayments or other commitments. Get some free advice by speaking to one of our financial advisers over the phone! Just submit your details and we'll be in touch shortly.</p>
+                        </div>
+                        <div class="cta-card-col">
+                            <div class="info-icon-circle">i</div>
+                            <h4 class="cta-card-title">Impartial Consulting Services to Empower Your Growth!</h4>
+                            <a href="#" class="btn-orange">Get Started <span class="arrow-right-small">&#8599;</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATS ROW -->
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-header"><span class="stat-number" data-from="1200" data-to="6154" data-decimals="0">1,200</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
+                    <p class="stat-desc">Released projects and strategies planned by company in 2024.</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-header"><span class="stat-number" data-from="0.2" data-to="0.512" data-decimals="3">0,200</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
+                    <p class="stat-desc">Qualified and dedicated team of financial experts to help you.</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-header"><span class="stat-number" data-from="100" data-to="1784" data-decimals="0">100</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
+                    <p class="stat-desc">Satisfied and happy clients we have servedall over the world.</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-header"><span class="stat-number" data-from="0.01" data-to="0.29" data-decimals="2">0,01</span><svg class="stat-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg></div>
+                    <p class="stat-desc">Years of proven financial expertise in wealth management planning.</p>
+                </div>
+            </div>
+
+            <!-- STRATEGY HEADER (NOVO) -->
+            <div class="strategy-header-row">
+                <div class="strategy-text">
+                    <span class="section-tagline">Committed to clients, focused on results.</span>
+                    <h2 class="strategy-title">Consulting strategies that focus on what's important to your beloved ones needs.</h2>
+                </div>
+                <div class="strategy-graphic">
+                    <div class="circle-badge circle-black">20</div>
+                    <div class="circle-badge circle-orange">71</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DARK SERVICES SECTION (ATUALIZADA) -->
+    <section class="dark-services-section">
+        <div class="container">
+            <div class="service-row">
+                <div class="service-text-col">
+                    <span class="service-subtitle">Financial Planning</span>
+                    <svg class="service-arrow-big" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="white"/></svg>
+
+                    <p class="service-desc-p">Financial planning is the process of taking a comprehensive look at your financial situation and building a specific financial plan to reach your goals. As a result, financial planning often delves into multiple areas of finance, including investing, taxes, savings, retirement, your estate, insurance and more.</p>
+
+                    <div class="service-subitem">
+                        <svg class="subitem-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white"/><path d="M8 12h8m-8 4h5" stroke="white"/></svg>
+                        <div class="subitem-content">
+                            <h5>Tax Planning</h5>
+                            <p>Our tax solutions help clients address tax liabilities on time and figure out how to maximize your tax refunds and minimize your tax liability.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-subitem">
+                        <svg class="subitem-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white"/><circle cx="9" cy="7" r="4" stroke="white"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="white"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="white"/></svg>
+                        <div class="subitem-content">
+                            <h5>Retirement Planning</h5>
+                            <p>We create retirement planning strategies that will help you prepare for the day. Our consultation will make sure that you'll saved enough money to live your lifestyle.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-buttons">
+                        <a href="#" class="btn-white-fill">Explore Service <span class="arrow-right-small">&#8599;</span></a>
+                        <a href="#" class="btn-transparent">Get Free Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-img-col">
+                    <div class="service-img-placeholder">IMAGEM</div>
+                    <div class="percent-badge-box">
+                        <div class="percent-circle">78%</div>
+                        <p class="badge-text">Success Rate <br> in Tax Planning</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DARK SERVICES SECTION - SECTION 2 -->
+    <section class="dark-services-section">
+        <div class="container">
+            <div class="service-row">
+                <div class="service-text-col">
+                    <span class="service-subtitle">Section 2</span>
+                    <svg class="service-arrow-big" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="white"/></svg>
+
+                    <p class="service-desc-p">Financial planning is the process of taking a comprehensive look at your financial situation and building a specific financial plan to reach your goals. As a result, financial planning often delves into multiple areas of finance, including investing, taxes, savings, retirement, your estate, insurance and more.</p>
+
+                    <div class="service-subitem">
+                        <svg class="subitem-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white"/><path d="M8 12h8m-8 4h5" stroke="white"/></svg>
+                        <div class="subitem-content">
+                            <h5>Tax Planning</h5>
+                            <p>Our tax solutions help clients address tax liabilities on time and figure out how to maximize your tax refunds and minimize your tax liability.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-subitem">
+                        <svg class="subitem-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white"/><circle cx="9" cy="7" r="4" stroke="white"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="white"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="white"/></svg>
+                        <div class="subitem-content">
+                            <h5>Retirement Planning</h5>
+                            <p>We create retirement planning strategies that will help you prepare for the day. Our consultation will make sure that you'll saved enough money to live your lifestyle.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-buttons">
+                        <a href="#" class="btn-white-fill">Explore Service <span class="arrow-right-small">&#8599;</span></a>
+                        <a href="#" class="btn-transparent">Get Free Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-img-col">
+                    <div class="service-img-placeholder">IMAGEM</div>
+                    <div class="percent-badge-box">
+                        <div class="percent-circle">78%</div>
+                        <p class="badge-text">Success Rate <br> in Tax Planning</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DARK SERVICES SECTION - SECTION 3 -->
+    <section class="dark-services-section">
+        <div class="container">
+            <div class="service-row">
+                <div class="service-text-col">
+                    <span class="service-subtitle">Section 3</span>
+                    <svg class="service-arrow-big" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="white"/></svg>
+
+                    <p class="service-desc-p">Financial planning is the process of taking a comprehensive look at your financial situation and building a specific financial plan to reach your goals. As a result, financial planning often delves into multiple areas of finance, including investing, taxes, savings, retirement, your estate, insurance and more.</p>
+
+                    <div class="service-subitem">
+                        <svg class="subitem-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white"/><path d="M8 12h8m-8 4h5" stroke="white"/></svg>
+                        <div class="subitem-content">
+                            <h5>Tax Planning</h5>
+                            <p>Our tax solutions help clients address tax liabilities on time and figure out how to maximize your tax refunds and minimize your tax liability.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-subitem">
+                        <svg class="subitem-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white"/><circle cx="9" cy="7" r="4" stroke="white"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="white"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="white"/></svg>
+                        <div class="subitem-content">
+                            <h5>Retirement Planning</h5>
+                            <p>We create retirement planning strategies that will help you prepare for the day. Our consultation will make sure that you'll saved enough money to live your lifestyle.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-buttons">
+                        <a href="#" class="btn-white-fill">Explore Service <span class="arrow-right-small">&#8599;</span></a>
+                        <a href="#" class="btn-transparent">Get Free Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-img-col">
+                    <div class="service-img-placeholder">IMAGEM</div>
+                    <div class="percent-badge-box">
+                        <div class="percent-circle">78%</div>
+                        <p class="badge-text">Success Rate <br> in Tax Planning</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INDUSTRIES/SOLUTIONS SECTION (NOVA) - Conteúdo da Imagem -->
+    <section class="industries-section">
+        <div class="container">
+            <div class="industries-header-row">
+                <div class="industries-title-col">
+                    <span class="industries-tagline">We believe in a distinctive way of managing money.</span>
+                    <h2 class="industries-heading">The best solution for future business!</h2>
+                </div>
+                <div class="industries-text-col">
+                    <p class="industries-intro-bold">To help our clients go from dreaming to doing, we have our core beliefs that are central to their investing success. We're here to help with any questions you have on your path to find financial security.</p>
+                    <p class="industries-intro-text">It takes time, effort, and discipline to be successful with this goal, so don't be lured by get rich quick schemes and too good to be true opportunities that can send you down a dangerous path.</p>
+                </div>
+            </div>
+
+            <div class="industries-card-row">
+                <div class="industries-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><path d="M18.8 13.5A6.5 6.5 0 1 1 5.2 13.5M12 2v2m0 16v2m8-10h2M2 12h2M17.15 6.85l1.41-1.41M5.44 18.56l1.41-1.41M18.56 18.56l-1.41-1.41M6.85 6.85L5.44 5.44"/></svg>
+                    </div>
+                    <h4 class="card-title-new">Technology & Software</h4>
+                    <p class="card-desc-new">As artificial intelligence and the internet of things move from concept to reality, all business executives worry about changes, but tech companies must be especially cognizant of the forces driving change and increased complexity.</p>
+                    <a href="#" class="btn-read-more">Read More <span class="read-more-arrow">&#8599;</span></a>
+                </div>
+
+                <div class="industries-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 18h6m-3 3v-3M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM21 12c0-2.3-1.64-4.26-4-4.85V6.5a1.5 1.5 0 0 0-3 0v.65c-2.36.59-4 2.55-4 4.85a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3z"/></svg>
+                    </div>
+                    <h4 class="card-title-new">Education & Training</h4>
+                    <p class="card-desc-new">Education is an important key to economic competitiveness and social cohesion. It helps individuals & communities to reach their full potential. Governments therefore committed to raising educational skills and access to lifelong learning.</p>
+                    <a href="#" class="btn-read-more">Read More <span class="read-more-arrow">&#8599;</span></a>
+                </div>
+
+                <div class="industries-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 21a2 2 0 0 1-2-2v-4a2 2 0 0 1 4 0v4a2 2 0 0 1-2 2zM12 5L5 9h14zM12 9v5"/></svg>
+                    </div>
+                    <h4 class="card-title-new">Hospitality & Leisure</h4>
+                    <p class="card-desc-new">Hospitality, leisure and tourism are vast areas that will give you the grounding to work in a variety of sectors from managing local sports centres or hotels, to planning itineraries of cruise ships, will give you the edge in this.</p>
+                    <a href="#" class="btn-read-more">Read More <span class="read-more-arrow">&#8599;</span></a>
+                </div>
+
+                <div class="industries-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L6.5 6.5l5.5 5.5 5.5-5.5L12 2zM12 22l5.5-5.5L12 11l-5.5 5.5L12 22zM2 12h20"/><circle cx="12" cy="12" r="3.5"/></svg>
+                    </div>
+                    <h4 class="card-title-new">Power & Utilities</h4>
+                    <p class="card-desc-new">We can help you make the right moves in an era of new energy sources, smart grids, and digital transformation. Adapting to climate change and a new energy mix will require power sector to think differently about every aspect of.</p>
+                    <a href="#" class="btn-read-more">Read More <span class="read-more-arrow">&#8599;</span></a>
+                </div>
+            </div>
+
+            <div class="industries-cta-footer">
+                <p class="cta-footer-text">We focus on helping clients shape the future of their business, and execute strategies on the changing face of the customer. <a href="#" class="btn-schedule">Schedule a Visit &gt;</a></p>
+                <a href="#" class="btn-explore-industries">Explore All Industries <span class="arrow-right-small">&#8599;</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PURPOSE SECTION (MOVIDO PARA CÁ) -->
+    <section class="purpose-section">
+        <!-- Background placeholder ocupando toda a seção -->
+        <div class="purpose-bg-placeholder">IMAGEM</div>
+        <!-- Overlay escuro para garantir legibilidade do texto branco sobre o placeholder cinza claro -->
+        <div class="purpose-overlay"></div>
+        
+        <div class="purpose-container">
+            <div class="purpose-left">
+                <span class="purpose-tagline">Expect and deliver the highest quality outcomes.</span>
+                <h2 class="purpose-heading">Our purpose is to build trust and maintaining a long lasting relationships with our clients.</h2>
+            </div>
+            <div class="purpose-right">
+                <p class="purpose-intro">Helping people make smart financial decisions is the most difficult mission. We are committed to publishing only accurate and actionable advice, personalized tools to help people navigate life's big personal finance decisions.</p>
+                <p class="purpose-desc">Year over year, we get to know the people who make the company work. We believe investing this way not only can ease risk, it powers each fund with a diverse of experienced investment professionals.</p>
+                
+                <!-- CARD MOVIDO PARA DENTRO DA COLUNA, ABAIXO DO TEXTO -->
+                <div class="purpose-floating-card">
+                    <div class="card-header-flex">
+                        <div class="card-number-circle">03</div>
+                        <span class="card-title-text">Establish confidence and discuss opportunities</span>
+                    </div>
+                    <!-- Imagem circular placeholder -->
+                    <div class="card-circle-img-placeholder">IMAGEM</div>
+                    <p class="card-body-text">We will provide unique recommendations in sensible investment choices that will help our clients meet their long term goals or fund their retirement income needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUES SECTION (NOVA) -->
+    <section class="values-section">
+        <div class="container">
+            <div class="values-flex-wrapper">
+                <!-- Coluna 1 -->
+                <div class="values-col">
+                    <div class="value-icon-circle">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </div>
+                    <h5 class="value-title">Innovate and learn from failure</h5>
+                </div>
+                
+                <div class="values-divider-vert"></div>
+
+                <!-- Coluna 2 -->
+                <div class="values-col">
+                    <div class="value-icon-circle">
+                         <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h5 class="value-title">Create impact with our colleagues</h5>
+                </div>
+
+                <div class="values-divider-vert"></div>
+
+                <!-- Coluna Texto -->
+                <div class="values-col text-col">
+                    <p class="values-desc-text">Our specialist team of consultants understands the importance of maintaining a long lasting business relationships with clients to deliver specific investment solutions for a long term success and empower thier business growth with our great expert guidance.</p>
+                    <a href="#" class="btn-link-red">Request A Free Consultation <span class="read-more-arrow">&#8599;</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESOURCES SECTION (NOVA) -->
+    <section class="resources-section">
+        <div class="container">
+            <div class="resources-wrapper" style="max-width: 100%;"> <!-- Expanded wrapper for new layout -->
+                <div style="max-width: 600px;">
+                    <span class="section-tagline">Resources that will guide your decision making.</span>
+                    <h2 class="section-heading" style="margin-bottom: 20px;">New ways to engage & empower clients</h2>
+                    <p class="text-light">Find out about the ways to deal with debts if you are falling behind with daily bills, loan and credit card repayments or other commitments & get some free advice by speaking to one of our financial advisers!</p>
+                </div>
+
+                <!-- NEW CARDS SECTION ADDED HERE -->
+                <div class="resources-cards-row">
+                    <!-- Card 1 -->
+                    <div class="resource-card">
+                        <div class="resource-img-box">
+                            IMAGEM
+                            <div class="resource-tags">
+                                <span class="res-tag">Business</span>
+                                <span class="res-tag">Mobile</span>
+                                <span class="res-tag">Tech</span>
+                            </div>
+                            <div class="resource-arrow-btn">
+                                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                            </div>
+                        </div>
+                        <div class="resource-content">
+                            <h4 class="resource-title">How should business adapt to support our world?</h4>
+                            <p class="resource-desc">Nowadays, we live in an increasingly mobile world, with information, goods and services moving around the globe faster...</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="resource-card">
+                        <div class="resource-img-box">
+                            IMAGEM
+                            <div class="resource-tags">
+                                <span class="res-tag">Pricing</span>
+                                <span class="res-tag">Tax</span>
+                            </div>
+                            <div class="resource-arrow-btn">
+                                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                            </div>
+                        </div>
+                        <div class="resource-content">
+                            <h4 class="resource-title text-orange">A catalyst to unlock potential in tax pricing and beyond</h4>
+                            <p class="resource-desc">The value and benefits offers the broader finance function and C-Suite, scalability to accommodate small to large scale...</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="resource-card">
+                        <div class="resource-img-box">
+                            IMAGEM
+                            <div class="resource-tags">
+                                <span class="res-tag">Strategies</span>
+                                <span class="res-tag">Tech</span>
+                                <span class="res-tag">Tips</span>
+                            </div>
+                            <div class="resource-arrow-btn">
+                                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                            </div>
+                        </div>
+                        <div class="resource-content">
+                            <h4 class="resource-title">Strategies for attracting and retaining prominent talents</h4>
+                            <p class="resource-desc">Trusted Advisors discuss how the search for CEOs has changed and steps private businesses can take in order to...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOOTER SECTION -->
+                <div class="resources-footer">
+                    <p class="res-footer-text">Get free advice by speaking to one of our financial advisers over the phone or just submit your details and we'll be in touch shortly! <a href="#" class="link-underline-bold">Get In Touch <span style="font-size:10px;">&#8599;</span></a></p>
+                    <div class="res-nav-arrows">
+                        <div class="res-arrow-box">&#8592;</div>
+                        <div class="res-arrow-box">&#8594;</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS SECTION (NOVA) -->
+    <section class="solutions-section">
+        <div class="container">
+            <div class="solutions-flex-wrapper">
+                <div class="solutions-left">
+                    <span class="solutions-tagline">We believe in a distinctive way of managing money.</span>
+                    <h2 class="solutions-heading">Putting right solutions<br>and methods in place.</h2>
+                    <div class="solutions-graphic-placeholder">IMAGEM</div> <!-- Representing the arrows -->
+                </div>
+                <div class="solutions-right">
+                    <p class="solutions-intro">Our team works across markets and capabilities to help you establish a strategy that addresses the realities of your business. Whether you want to improve the performance of work or mitigate the risks of mergers and acquisitions.</p>
+                    <p class="solutions-desc">Our research is more than just numbers. We don't stop at spreadsheets and site visits. Year over year, we get to know the people who make the company work. We believe investing this way not only can ease risk, it powers each fund with a diverse mix of experienced investment professionals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMITTED SECTION (NOVA - ADICIONADA) -->
+    <section class="committed-section">
+        <div class="committed-bg-placeholder">IMAGEM</div>
+        <div class="committed-overlay"></div>
+        <div class="container committed-container">
+            <div class="play-button-circle">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="committed-content">
+                <span class="committed-tagline">A global strategy designed to solve tomorrow's challenges.</span>
+                <h2 class="committed-heading">Committed to provide accurate and actionable advice to help our clients take finance decisions.</h2>
+                
+                <div class="founder-signature-block">
+                    <span class="founder-name">Michael Brian</span>
+                    <span class="founder-role">The Founder</span>
+                    <div class="signature-placeholder">Michael Brian</div>
+                </div>
+
+                <p class="committed-desc">We're here to help with any questions you have on your path to find financial security and our core beliefs central to investing success.</p>
+
+                <div class="committed-tags-row">
+                    <a href="#" class="btn-tag-orange">Process Optimization</a>
+                    <a href="#" class="btn-tag-orange">Data Analytics</a>
+                    <a href="#" class="btn-tag-orange">Risk Management</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION (NOVA) -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="testimonials-container">
+                <!-- Graphic Column -->
+                <div class="testimonial-left-graphic">
+                    <div class="quote-circle">“</div>
+                    <div class="image-circle-placeholder">IMAGEM</div>
+                </div>
+
+                <!-- Content Column -->
+                <div class="testimonial-content">
+                    <span class="testimonial-tagline">What Our Customers Feel About Our Services!</span>
+                    <p class="testimonial-text">It's been an excellent experience. Allianz team of consultants is a trusted partner; they took the necessary time to understand our operations and needs, which was essential for our providers and clients. They were professionals and made the right changes and adjustments to align project team with our culture and needs.</p>
+                    
+                    <div class="testimonial-footer">
+                        <div class="testimonial-nav-arrows">
+                            <span class="test-arrow">&#8592;</span>
+                            <span class="test-arrow">&#8594;</span>
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">Dana Wade Sr</span>
+                            <span class="author-role">Optime Inc</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION (NOVA) -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-left">
+                    <div class="contact-bg-placeholder">IMAGEM</div>
+                    <div class="contact-left-overlay"></div>
+                    <div class="contact-left-content">
+                        <svg class="big-arrow-top-right" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                        <h3 class="contact-heading">Speak to one of <br> our advisers and <br> get free advice!</h3>
+                        <p class="contact-subtext">Speak to one of our financial advisers over the phone or just submit your details and we'll be in touch shortly!</p>
+                        
+                        <div class="contact-list-block">
+                             <div class="list-row">
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                <span>Diversity of ideas for investors funds!</span>
+                             </div>
+                             <div class="list-divider"></div>
+                             <div class="list-row">
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                <span>Helping in make smart financial decisions.</span>
+                             </div>
+                             <div class="list-divider"></div>
+                             <div class="list-row">
+                                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                <span>No hidden fees, and no obligation</span>
+                             </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div class="contact-right">
+                    <h4 class="form-intro-heading">Interested in cooperation or have questions?<br>Just fill out the form and we will call you back. Or<br>you can contact us via: <a href="#" class="email-link-highlight">Allianz@7oroof.com</a></h4>
+                    
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label class="form-label">Your name</label>
+                            <input type="text" class="form-input" placeholder="Mahmoud Adel">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" placeholder="Name@Allianz.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" class="form-input" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Company Name</label>
+                            <input type="text" class="form-input" placeholder="Allianz">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Website</label>
+                            <input type="text" class="form-input" placeholder="www.allianz.co">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Budget</label>
+                            <select class="form-select">
+                                <option>$50,000 - $100,000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Industry</label>
+                            <select class="form-select">
+                                <option>Banking & Finance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Expertise</label>
+                            <select class="form-select">
+                                <option>Financial Planning</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">Business Description</label>
+                            <textarea class="form-textarea" placeholder="Kindly provide enough information about your business.."></textarea>
+                        </div>
+                        <button type="button" class="btn-submit-dark">Submit Request <span style="font-size: 10px;">&#8599;</span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWS SECTION (NOVA) -->
+    <section class="news-section">
+        <div class="container">
+            <div class="news-heading-container">
+                <h2 class="section-heading" style="margin-bottom:0;">News & Articles</h2>
+                <div class="news-nav-arrows">
+                    <span class="res-arrow-box">&#8592;</span>
+                    <span class="res-arrow-box">&#8594;</span>
+                </div>
+            </div>
+
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-img-placeholder">IMAGEM</div>
+                    <div class="news-content">
+                        <p class="news-meta">Digital | Trends</p>
+                        <h4 class="news-title">Traditional hedge funds now invest in digital assets nearly double a year ago!</h4>
+                        <div class="news-footer">
+                            <span class="news-date">Dec 28, 2023</span>
+                            <svg class="news-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" fill="none" stroke-width="2" /></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <div class="news-img-placeholder">IMAGEM</div>
+                    <div class="news-content">
+                        <p class="news-meta">Business | Tech</p>
+                        <h4 class="news-title">Digital technology risks are a key concern for business men and risk managment leaders.</h4>
+                        <div class="news-footer">
+                            <span class="news-date">Dec 28, 2023</span>
+                            <svg class="news-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" fill="none" stroke-width="2" /></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <div class="news-img-placeholder">IMAGEM</div>
+                    <div class="news-content">
+                        <p class="news-meta">Business | Consumers</p>
+                        <h4 class="news-title">Empowered consumers are prepared to make changes response to disruptions!</h4>
+                        <div class="news-footer">
+                            <span class="news-date">Dec 28, 2023</span>
+                            <svg class="news-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" fill="none" stroke-width="2" /></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <div class="news-img-placeholder">IMAGEM</div>
+                    <div class="news-content">
+                        <p class="news-meta">Growth | Leadership</p>
+                        <h4 class="news-title">Family business stands to gain from next generation's focus on growth and sustainability.</h4>
+                        <div class="news-footer">
+                            <span class="news-date">Dec 28, 2023</span>
+                            <svg class="news-arrow-icon" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" fill="none" stroke-width="2" /></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="btn-check-blog">Check All Blog Posts <span style="font-size:10px;">&#8599;</span></a>
+        </div>
+    </section>
+
+    <!-- MAIN FOOTER (NOVO) -->
+    <footer class="main-footer">
+        <div class="container">
+            <!-- Footer Top -->
+            <div class="footer-top">
+                <div class="footer-subscribe-col">
+                    <p class="subscribe-text">Sign up for alerts, monthly insights, strategic business perspectives and exclusive content in your inbox.</p>
+                    <button class="btn-subscribe-white">Subscribe <span style="font-size:10px;">&#8599;</span></button>
+                </div>
+
+                <div class="footer-links-container">
+                    <div class="footer-col">
+                        <h5>Company</h5>
+                        <ul class="footer-link-list">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Sustainability</a></li>
+                            <li><a href="#">Leadership Team</a></li>
+                            <li><a href="#">News & Media</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Services</h5>
+                        <ul class="footer-link-list">
+                            <li><a href="#">Financial Planning</a></li>
+                            <li><a href="#">Wealth Management</a></li>
+                            <li><a href="#">Portfolio Consulting</a></li>
+                            <li><a href="#">Mergers & Acquisitions</a></li>
+                            <li><a href="#">Sustainability Assurance</a></li>
+                            <li><a href="#">Crisis Management</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Industries</h5>
+                        <ul class="footer-link-list">
+                            <li><a href="#">Banking & Finance</a></li>
+                            <li><a href="#">Sciences & Healthcare</a></li>
+                            <li><a href="#">Technology & Software</a></li>
+                            <li><a href="#">Education & Training</a></li>
+                            <li><a href="#">Hospitality & Leisure</a></li>
+                            <li><a href="#">Power & Utilities</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Quick Contact</h5>
+                        <span class="contact-info-text">Allianz@7oroof.com</span>
+                        <span class="contact-info-text">+2 011 634 5741</span>
+                        <div class="social-icons">
+                            <div class="social-icon-circle"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+                            <div class="social-icon-circle"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></div>
+                            <div class="social-icon-circle"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer CTA -->
+            <div class="footer-cta-row">
+                <h2 class="big-footer-title">Get In Touch</h2>
+                <svg class="big-arrow-footer" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom-row">
+                <span>© 2023 Allianz. All Rights Reserved. With Love by 7oroof.com</span>
+                <div class="footer-bottom-links">
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <!-- TypeScript Services -->
+    <script type="module" src="/src/services/header.ts"></script>
+    <script type="module" src="/src/services/counters.ts"></script>
+
+</body>
+</html>
